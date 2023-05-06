@@ -1,0 +1,61 @@
+@import 'src/common/scss/mixins/mixins';
+
+.header {
+  position: relative;
+  max-width: 1500px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 45px 0;
+  color: white;
+  margin: 0 auto;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    @include flex(center, center, column);
+    width: 45%;
+    margin: 0 auto;
+
+    & > h1 {
+      margin-top: 0;
+    }
+
+    @media screen and (max-width: 760px) {
+      width: 80%;
+    }
+
+    .filtersPanel {
+      margin-top: 20px;
+      width: 100%;
+      @include flex(space-between, center, column);
+      gap: 25px;
+
+      .selectsBlock {
+        width: 100%;
+        @include flex(center, center);
+        gap: 30px;
+
+        & > div {
+          flex-grow: 1;
+          @include flex(center, center);
+          gap: 10px;
+        }
+      }
+    }
+
+  }
+}
