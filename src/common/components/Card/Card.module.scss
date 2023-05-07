@@ -1,0 +1,55 @@
+@import 'src/common/scss/mixins/mixins';
+
+.card {
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  min-height: 230px;
+  padding: 10px 15px 30px 15px;
+  & > img {
+    height: 190px;
+    width: 125px;
+    position: absolute;
+    border: 1px solid rgb(0,0,0,0.3);
+    border-radius: 10px;
+    z-index: 1;
+    top: -40px;
+    left: 25px;
+    box-shadow: 10px 7px 10px rgba(63, 79, 87, 0.8);
+  }
+
+  .information {
+    margin-left: 160px;
+    @include flex(space-between, flex-start, column);
+    & > span {
+      font-style: italic;
+    }
+    & > p {
+      font-size: 20px;
+      font-weight: 800;
+      color: rgb(61, 93, 63);
+      margin-bottom: 20px;
+    }
+
+    .authors {
+      margin-bottom: 23px;
+
+      & > span {
+        color: rgb(179, 77, 0);
+        font-style: italic;
+      }
+    }
+
+    .categories {
+      gap: 1rem;
+      @include flex(flex-start,stretch,row,wrap);
+      & > span {
+        color: white;
+        border-radius: 4px;
+        padding: 0.3rem 0.7rem;
+        background-color: rgb(97, 86, 129, 0.7); //#e6f6e3;
+        box-shadow: rgb(5, 79, 35, 0.4) 0 0 8px;
+      }
+    }
+  }
+}
