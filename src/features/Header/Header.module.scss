@@ -53,6 +53,7 @@
           flex-grow: 1;
           @include flex(center, center);
           gap: 10px;
+          font-weight: 500;
         }
       }
     }
