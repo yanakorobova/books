@@ -2,27 +2,38 @@ export type DataBookType = {
     volumeId: string
 }
 export type SearchRequestDataType = {
-    query: string
+    inauthor?: string
+    query?: string
     maxResults: number
     startIndex: number
     orderBy: string
+    category?: string
 }
 export type VolumeInfoType = {
     title: string
     authors: string[]
     categories: string[]
     imageLinks: {
-        thumbnail : string
+        thumbnail: string
     }
+    averageRating:number
+    ratingsCount: number
 }
 export type BooksListType = {
-    id: string
+    etag: string
     volumeInfo: VolumeInfoType
 }
+export type ResponseBooksData = {
+    totalItems: number
+    books: BooksListType[]
+    addMore: boolean
+}
 export type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type orderByType = 'relevance' | 'newest'
+export type OrderByType = 'Relevance' | 'Newest'
+
 export type SettingsType = {
-    orderBy: orderByType
+    orderBy: OrderByType
     query: string
     category: string
+    inauthor: string
 }
