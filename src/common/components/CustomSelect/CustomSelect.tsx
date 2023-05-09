@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Select} from 'antd'
 
 type ItemType = {
@@ -10,12 +10,15 @@ type CustomSelectPropsType = {
     variable: any
     callback: (value: any) => void
 }
-export const CustomSelect: React.FC<CustomSelectPropsType> = ({items, variable,callback}) => {
+export const CustomSelect: React.FC<CustomSelectPropsType> = React.memo(({items, variable,callback}) => {
     const [value,setValue] = useState(variable)
     const onChangeHandler = (value: any) => {
        callback(value)
         setValue(value)
     }
+    useEffect(()=>{
+        setValue(variable)
+    },[variable])
     return (
         <Select
             style={{flexGrow: 1}}
@@ -26,5 +29,5 @@ export const CustomSelect: React.FC<CustomSelectPropsType> = ({items, variable,c
             size='large'
         />
     );
-};
+});
 
