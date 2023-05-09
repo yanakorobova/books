@@ -3,12 +3,12 @@ import thunk from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer} from "app/app-slice";
 import {booksReducer} from "features/ListBooks/books-slice";
-import {settingsReducer} from "features/Header/FiltersPanel/settings-slice";
+import {filtersReducer} from "features/Header/FiltersPanel/filters-slice";
 
 const rootReducer = combineReducers({
     app: appReducer,
     books: booksReducer,
-    settings: settingsReducer
+    settings: filtersReducer
 })
 export const store = configureStore({
     reducer: rootReducer,
@@ -16,7 +16,7 @@ export const store = configureStore({
 })
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
-
+export type RootState = ReturnType<typeof store.getState>
 export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
