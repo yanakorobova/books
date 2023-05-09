@@ -2,53 +2,105 @@
 
 .card {
   background: white;
-  border-radius: 10px;
+  border-radius: 32px;
   position: relative;
-  min-height: 230px;
-  padding: 10px 15px 30px 15px;
+  min-height: 220px;
+  padding: 19px 20px 30px 15px;
+  @media screen and (max-width: 434px) {
+    min-height: auto;
+    padding-bottom: 20px;
+  }
+
+  .rating {
+    z-index: 1;
+    position: absolute;
+    top: 160px;
+    left: 22px;
+    @media screen and (max-width: 434px) {
+      font-size: 15px;
+      top: 115px;
+    }
+    @media screen and (max-width: 347px) {
+      font-size: 10px;
+      top: 98px;
+    }
+  }
+
   & > img {
     height: 190px;
     width: 125px;
     position: absolute;
-    border: 1px solid rgb(0,0,0,0.3);
+    border: 1px solid rgb(0, 0, 0, 0.3);
     border-radius: 10px;
     z-index: 1;
     top: -40px;
     left: 25px;
     box-shadow: 10px 7px 10px rgba(63, 79, 87, 0.8);
+    @media screen and (max-width: 434px) {
+      height: 140px;
+      width: 100px;
+    }
+    @media screen and (max-width: 347px) {
+      height: 114px;
+      width: 74px;
+      top: -30px;
+    }
   }
 
   .information {
-    margin-left: 160px;
-    @include flex(space-between, flex-start, column);
-    & > span {
-      font-style: italic;
+    margin-left: 164px;
+    @media screen and (max-width: 434px) {
+      margin-left: 135px;
     }
+    @media screen and (max-width: 347px) {
+      margin-left: 108px;
+    }
+    @include flex(space-between, flex-start, column);
+
     & > p {
+      @include title();
       font-size: 20px;
       font-weight: 800;
       color: rgb(61, 93, 63);
-      margin-bottom: 20px;
+      margin-bottom: 11px;
+      margin-top: 0;
     }
 
     .authors {
-      margin-bottom: 23px;
+      margin-bottom: 20px;
+      @include text();
+
+      & > p {
+        margin: 0;
+        font-style: italic;
+      }
 
       & > span {
+        cursor: pointer;
         color: rgb(179, 77, 0);
         font-style: italic;
+
+        &:hover {
+          color: rgb(239, 141, 66);
+        }
       }
     }
 
     .categories {
       gap: 1rem;
-      @include flex(flex-start,stretch,row,wrap);
+      @include flex(flex-start, stretch, row, wrap);
+      @include text();
       & > span {
+        user-select: none;
         color: white;
         border-radius: 4px;
         padding: 0.3rem 0.7rem;
-        background-color: rgb(97, 86, 129, 0.7); //#e6f6e3;
-        box-shadow: rgb(5, 79, 35, 0.4) 0 0 8px;
+        background-color: rgb(97, 86, 129, 0.7);
+        box-shadow: rgb(97, 86, 129, 0.4) 0 0 8px;
+      }
+
+      .category:hover {
+        background-color: rgba(159, 141, 211, 0.7);
       }
     }
   }
