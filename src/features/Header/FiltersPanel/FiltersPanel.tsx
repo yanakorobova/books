@@ -3,22 +3,36 @@ import s from './../Header.module.scss'
 import {Search} from "common/components/Search/Search";
 import {CustomSelect} from "common/components/CustomSelect/CustomSelect";
 import {useAppDispatch, useAppSelector} from "app/store";
-import {selectCategory, selectOrderBy} from "app/selectors";
-import {changeCategory, changeOrderBy, changeQuery} from "features/Header/FiltersPanel/settings-slice";
-import {orderByType} from "common/type/type";
+import {selectCategory, selectOrderBy, selectQuery} from "app/selectors";
+import {changeCategory, changeOrderBy, changeQuery} from "features/Header/FiltersPanel/filters-slice";
+import {OrderByType} from "common/type/type";
 
 const categories = [
-    {value: 'all', label: 'all'},
-    {value: 'art', label: 'art'},
-    {value: 'biography', label: 'biography'},
-    {value: 'computers', label: 'computers'},
-    {value: 'history', label: 'history'},
-    {value: 'medical', label: 'medical'},
-    {value: 'poetry', label: 'poetry'},
+    {value: 'All', label: 'All'},
+    {value: 'Art', label: 'Art'},
+    {value: 'Adventure', label: 'Adventure'},
+    {value: 'Biography', label: 'Biography'},
+    {value: 'Business', label: 'Business'},
+    {value: 'Computers', label: 'Computers'},
+    {value: 'Detective', label: 'Detective'},
+    {value: 'Drama', label: 'Drama'},
+    {value: 'England', label: 'England'},
+    {value: 'Fantasy', label: 'Fantasy'},
+    {value: 'Fiction', label: 'Fiction'},
+    {value: 'Handbooks', label: 'Handbooks'},
+    {value: 'Health', label: 'Health'},
+    {value: 'History', label: 'History'},
+    {value: 'Literature', label: 'Literature'},
+    {value: 'Medical', label: 'Medical'},
+    {value: 'Psychology', label: 'Psychology'},
+    {value: 'Poetry', label: 'Poetry'},
+    {value: 'Religion', label: 'Religion'},
+    {value: 'Romance', label: 'Romance'},
+    {value: 'Thrillers  ', label: 'Thrillers'},
 ]
 const sort = [
-    {value: 'relevance ', label: 'relevance '},
-    {value: 'newest', label: 'newest'},
+    {value: 'Relevance ', label: 'Relevance'},
+    {value: 'Newest', label: 'Newest'},
 ]
 
 export const FiltersPanel = () => {
@@ -26,17 +40,22 @@ export const FiltersPanel = () => {
     const dispatch = useAppDispatch()
     const orderBy = useAppSelector(selectOrderBy)
     const category = useAppSelector(selectCategory)
+    const query = useAppSelector(selectQuery)
 
-    const changeOrderByHandler = useCallback((orderBy: orderByType) =>
-        dispatch(changeOrderBy({orderBy})), [])
+    const changeOrderByHandler = useCallback((orderBy: OrderByType) =>
+        dispatch(changeOrderBy({orderBy})), [orderBy])
     const changeCategoryHandler = useCallback((category: string) =>
-        dispatch(changeCategory({category})), [])
-    const changeQueryHandler = useCallback((query: string) =>
-        dispatch(changeQuery({query})), [])
+        dispatch(changeCategory({category})), [category])
+    const changeQueryHandler = useCallback((query: string) => {
+        dispatch(changeCategory({category: 'All'}))
+        dispatch(changeQuery({query}))
+    }, [])
 
     return (
         <div className={s.filtersPanel}>
-            <Search style={{width: '80%'}} callback={changeQueryHandler}/>
+            <div className={s.search}>
+                <Search callback={changeQueryHandler} variable={query}/>
+            </div>
             <div className={s.selectsBlock}>
                 <div>
                     <span>Categories</span>
