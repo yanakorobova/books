@@ -43,9 +43,9 @@ export const FiltersPanel = () => {
     const query = useAppSelector(selectQuery)
 
     const changeOrderByHandler = useCallback((orderBy: OrderByType) =>
-        dispatch(changeOrderBy({orderBy})), [orderBy])
+        dispatch(changeOrderBy({orderBy})), [])
     const changeCategoryHandler = useCallback((category: string) =>
-        dispatch(changeCategory({category})), [category])
+        dispatch(changeCategory({category})), [])
     const changeQueryHandler = useCallback((query: string) => {
         dispatch(changeCategory({category: 'All'}))
         dispatch(changeQuery({query}))
