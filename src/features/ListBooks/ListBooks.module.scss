@@ -1,36 +1,73 @@
 @import 'src/common/scss/mixins/mixins';
 
-.container {
-
-  .listBooks {
-    display: grid;
-    grid-template-columns:  repeat(auto-fill, minmax(421px, 1fr));
-    gap: 3rem;
-    row-gap: 4rem;
-  }
-
-  .button {
-    margin-top: 10px;
-    @include flex(center, center);
-
-    & > button {
-      border-radius: 12px;
-      padding: 12px 16px;
-      margin: 30px auto 0 auto;
-      text-align: center;
-      text-overflow: ellipsis;
-      max-width: 300px;
-      width: 100%;
+.error{
+  padding-top: 30px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 23px;
+}
+.books{
+  .countBooks{
+    padding-top: 1.5rem;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    & > span{
       color: rgb(179, 77, 0);
-      font-size: inherit;
-      font-weight: inherit;
-      border: 2px solid rgb(179, 77, 0);
-      transition: all 0.3s ease;
-      cursor: pointer;
+    }
+    @media screen and (max-width: 347px) {
+      font-size: 20px;
+    }
+  }
+  .container {
+    padding-top: 5rem;
+    @media screen and (max-width: 347px) {
+      padding-top: 3rem;
+    }
+    .notFound {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 23px;
+    }
 
-      &:hover {
-        background: rgb(179, 77, 0);
-        color: white;
+    .listBooks {
+      display: grid;
+      grid-template-columns:  repeat(auto-fill, minmax(410px, 1fr));
+      gap: 3rem;
+      row-gap: 4rem;
+      @media screen and (max-width: 434px) {
+        grid-template-columns: 1fr;
+      }
+      @media screen and (max-width: 347px) {
+        row-gap: 3rem;
+      }
+    }
+
+    .button {
+      margin-top: 10px;
+      @include flex(center, center);
+
+      & > button {
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin: 30px auto 0 auto;
+        text-align: center;
+        text-overflow: ellipsis;
+        max-width: 300px;
+        width: 100%;
+        color: rgb(179, 77, 0);
+        font-size: inherit;
+        font-weight: inherit;
+        border: 2px solid rgb(179, 77, 0);
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          background: rgb(179, 77, 0);
+          color: white;
+        }
       }
     }
   }

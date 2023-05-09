@@ -5,3 +5,13 @@
   align-items: $align;
   flex-wrap: $wrap;
 }
+@mixin text(){
+  @media screen and (max-width: 347px) {
+    font-size: 14px;
+  }
+}
+@mixin title(){
+  @media screen and (max-width: 347px) {
+    font-size: 16px;
+  }
+}

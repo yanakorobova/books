@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 45px 0;
+  padding: 45px 2.5%;
   color: white;
   margin: 0 auto;
 
@@ -27,30 +27,38 @@
     position: relative;
     z-index: 2;
     @include flex(center, center, column);
-    width: 45%;
     margin: 0 auto;
 
     & > h1 {
+      text-align: center;
       margin-top: 0;
     }
 
     @media screen and (max-width: 760px) {
       width: 80%;
     }
-
     .filtersPanel {
       margin-top: 20px;
-      width: 100%;
+      width: 80%;
       @include flex(space-between, center, column);
       gap: 25px;
-
+      @media screen and (max-width: 640px) {
+        width: 100%;
+      }
+      .search{
+        max-width: 500px;
+        width: 100%;
+      }
       .selectsBlock {
         width: 100%;
         @include flex(center, center);
         gap: 30px;
-
+        @media screen and (max-width: 515px) {
+          @include flex(center, center,column);
+        }
         & > div {
-          flex-grow: 1;
+          max-width: 300px;
+          width: 100%;
           @include flex(center, center);
           gap: 10px;
           font-weight: 500;
