@@ -1,27 +1,32 @@
-import React, {ChangeEvent, useState} from 'react';
-import {SearchOutlined} from "@ant-design/icons";
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Input} from 'antd';
 
 type SearchPropsType = {
-    style: any
     callback: (value: string) => void
+    variable: string
 }
-export const Search: React.FC<SearchPropsType> = ({style, callback}) => {
-    const [value,setValue] = useState('')
+export const Search: React.FC<SearchPropsType> = React.memo(({callback, variable}) => {
+    const [value, setValue] = useState(variable)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-   const onClickHandler = () =>{
-       callback(value)
-   }
+    const onClickHandler = () => {
+        if (value) {
+            callback(value)
+        }
+    }
+    useEffect(() => {
+        setValue(variable)
+    }, [variable])
+
     return (
-        <Input
+        <Input.Search
             size="large"
-            placeholder="Provide your text"
+            placeholder="Books or author"
             onChange={onChangeHandler}
-            suffix={<SearchOutlined style={{color: 'gray', cursor: 'pointer'}} onClick={onClickHandler}/>}
-            onPressEnter={onClickHandler}
-            style={style}
+            allowClear
+            onSearch={onClickHandler}
+            value={value}
         />
     );
-};
+})
