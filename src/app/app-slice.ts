@@ -6,7 +6,7 @@ const initialState = {
     error: null as null | string
 }
 const appSlice = createSlice({
-    initialState: initialState,
+    initialState,
     name: 'app',
     reducers: {
         setAppStatus: (state, action: PayloadAction<{ status: StatusType }>) => {

@@ -10,7 +10,7 @@ export const BooksApi = {
     loadBooks(data: SearchRequestDataType) {
         const {query, orderBy, startIndex, maxResults, category, inauthor} = data
         if (category === 'All' && !inauthor) {
-            return instance.get(`?q="${query}&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
+            return instance.get(`?q="${query}"&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
         }
         if (inauthor) {
             return instance.get(`?q=inauthor:"${inauthor}"&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
@@ -18,6 +18,6 @@ export const BooksApi = {
         return instance.get(`?q=subject:"${category}"&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
     },
     getBook(data: DataBookType) {
-        return instance.get(`/${data}`)
+        return instance.get(`/${data.volumeId}`)
     }
 }
