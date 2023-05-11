@@ -16,6 +16,7 @@ import {Card} from "common/components/Card/Card";
 import s from './ListBooks.module.scss';
 import {Loader} from "common/components/Loader/Loader";
 import {MAX_RES_ADD_MORE, MAX_RES_FIRST} from "common/constants/constants";
+import {Button} from "common/components/Button/Button";
 
 export const ListBooks = () => {
 
@@ -38,7 +39,7 @@ export const ListBooks = () => {
     }, [query, orderBy, category, inauthor])
 
     const booksMapped = books.map(b => {
-        return <Card info={b.volumeInfo} key={b.etag}/>
+        return <Card info={b} key={b.etag}/>
     })
 
     const onClickHandler = async () => {
@@ -59,8 +60,9 @@ export const ListBooks = () => {
                             <div className={s.listBooks}>
                                 {booksMapped}
                             </div>
-                            {(totalItems - books.length) && <div className={s.button}>
-                                <button disabled={addMore} onClick={onClickHandler}>Load More</button>
+                            {!!(totalItems - books.length) && <div className={s.button}>
+                                <Button disabled={addMore} onClick={onClickHandler} style={{maxWidth: '300px'}}>Load
+                                    More</Button>
                             </div>}
                         </div>
                     </> : <div className={s.notFound}>Nothing Found. <br/>Change query parameters.</div>}
