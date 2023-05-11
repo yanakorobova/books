@@ -5,13 +5,45 @@
   align-items: $align;
   flex-wrap: $wrap;
 }
-@mixin text(){
+
+@mixin text() {
   @media screen and (max-width: 347px) {
     font-size: 14px;
   }
 }
-@mixin title(){
+
+@mixin title() {
   @media screen and (max-width: 347px) {
     font-size: 16px;
+
+  }
+}
+
+@mixin authors() {
+  & > span {
+    cursor: pointer;
+    color: rgb(179, 77, 0);
+    font-style: italic;
+
+    &:hover {
+      color: rgb(239, 141, 66);
+    }
+  }
+}
+@mixin categories() {
+  gap: 1rem;
+  @include flex(flex-start, stretch, row, wrap);
+  @include text();
+
+  & > span {
+    user-select: none;
+    color: white;
+    border-radius: 4px;
+    padding: 0.3rem 0.7rem;
+    background-color: rgb(97, 86, 129, 0.7);
+    box-shadow: rgb(97, 86, 129, 0.4) 0 0 8px;
+  }
+  .category:hover {
+    background-color: rgba(159, 141, 211, 0.7);
   }
 }
