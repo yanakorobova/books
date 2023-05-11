@@ -1,0 +1,125 @@
+@import "src/common/scss/mixins/mixins";
+
+.container {
+  width: 100%;
+  height: auto;
+  @include flex(flex-start, stretch);
+
+  .bgContainer {
+    width: 40%;
+    background-color: rgb(245, 245, 245);
+    position: relative;
+
+    .bg {
+      right: 0;
+      position: absolute;
+      z-index: 1;
+      width: 120%;
+      height: 100%;
+      overflow: hidden;
+
+      & > img {
+        width: 100%;
+        height: 100%;
+        filter: blur(24px);
+        transform: scale(1.5);
+        transform-origin: right top;
+      }
+    }
+
+    & > img {
+      position: absolute;
+      z-index: 2;
+      width: 260px;
+      height: 380px;
+      border-radius: 12px;
+      right: -30px;
+      top: 30px;
+      border: 1px solid rgb(232, 232, 232);
+    }
+  }
+
+  .description {
+
+    .back {
+      @include flex(flex-start, center);
+      gap: 10px;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(83, 83, 89);
+      }
+    }
+
+    padding: 30px 0 60px 60px;
+    width: 100%;
+
+    .info {
+      & h3 {
+        margin-bottom: 10px;
+      }
+
+      .star {
+        margin-top: 20px;
+        color: #fadb14;
+      }
+
+      & > h1 {
+        margin: 7px 0;
+      }
+
+      .authors {
+        margin: 0;
+        @include authors();
+      }
+
+      @include text();
+
+      .yearPage {
+        @include flex(flex-start, center);
+        gap: 10px;
+        color: #595959;
+
+        & > p {
+          margin-bottom: 0;
+        }
+      }
+
+      .aboutBook {
+        margin-top: 10px;
+
+        .text {
+          text-align: justify;
+
+          .line {
+            margin-top: 10px;
+            height: 1px;
+            width: 100%;
+            background-color: #b9b9b9;
+          }
+        }
+
+        & > span {
+          display: none;
+        }
+
+        .button {
+          margin: 15px 0 30px 0;
+          @include flex(flex-start, center);
+          gap: 10px;
+          color: rgb(179, 77, 0);
+          cursor: pointer;
+
+          &:hover {
+            color: rgb(239, 141, 66);
+          }
+        }
+      }
+
+      .categories {
+        @include categories();
+      }
+
+    }
+  }
+}

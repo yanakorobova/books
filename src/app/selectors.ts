@@ -9,3 +9,8 @@ export const selectCategory = (state: AppRootStateType) => state.settings.catego
 export const selectInauthor = (state: AppRootStateType) => state.settings.inauthor
 export const selectStatus = (state: AppRootStateType) => state.app.status
 export const selectError = (state: AppRootStateType) => state.app.error
+export const selectBookInfo = (state: AppRootStateType) => state.details.volumeInfo
+export const selectBookIsLoad = (state: AppRootStateType) => state.details.id
+export const selectIsShow = (state: AppRootStateType) => state.settings.isShow
+
+

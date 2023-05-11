@@ -4,11 +4,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer} from "app/app-slice";
 import {booksReducer} from "features/ListBooks/books-slice";
 import {filtersReducer} from "features/Header/FiltersPanel/filters-slice";
+import {detailsReducer} from "features/Details/details-slice";
 
 const rootReducer = combineReducers({
     app: appReducer,
     books: booksReducer,
-    settings: filtersReducer
+    settings: filtersReducer,
+    details: detailsReducer
 })
 export const store = configureStore({
     reducer: rootReducer,

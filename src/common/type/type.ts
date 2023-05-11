@@ -1,5 +1,5 @@
 export type DataBookType = {
-    volumeId: string
+    volumeId: string | undefined
 }
 export type SearchRequestDataType = {
     inauthor?: string
@@ -15,11 +15,18 @@ export type VolumeInfoType = {
     categories: string[]
     imageLinks: {
         thumbnail: string
+        small: string
     }
-    averageRating:number
-    ratingsCount: number
+    averageRating: number
+    description: string
+    printedPageCount: number
+    publishedDate: string
+    previewLink: string
+    publisher: string
+    language: string
 }
 export type BooksListType = {
+    id: string
     etag: string
     volumeInfo: VolumeInfoType
 }
@@ -36,4 +43,9 @@ export type SettingsType = {
     query: string
     category: string
     inauthor: string
+    isShow: boolean
+}
+export type BookInfoType = {
+    id: string
+    volumeInfo: VolumeInfoType
 }
