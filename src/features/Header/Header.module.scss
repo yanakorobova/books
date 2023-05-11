@@ -20,7 +20,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
   }
 
   .container {
@@ -37,31 +37,38 @@
     @media screen and (max-width: 760px) {
       width: 80%;
     }
+
     .filtersPanel {
       margin-top: 20px;
-      width: 80%;
+      max-width: 580px;
+      width: 100%;
       @include flex(space-between, center, column);
       gap: 25px;
-      @media screen and (max-width: 640px) {
+
+      .search {
         width: 100%;
       }
-      .search{
-        max-width: 500px;
-        width: 100%;
-      }
+
       .selectsBlock {
         width: 100%;
         @include flex(center, center);
-        gap: 30px;
-        @media screen and (max-width: 515px) {
-          @include flex(center, center,column);
+        gap: 20px;
+        @media screen and (max-width: 530px) {
+          @include flex(center, center, column);
         }
+
         & > div {
-          max-width: 300px;
-          width: 100%;
-          @include flex(center, center);
+          width: 50%;
           gap: 10px;
+          @include flex(space-between, center);
           font-weight: 500;
+          @media screen and (max-width: 530px) {
+            width: 100%;
+          }
+
+          & > p {
+            word-break: normal;
+          }
         }
       }
     }

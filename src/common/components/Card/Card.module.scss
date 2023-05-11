@@ -10,12 +10,11 @@
     min-height: 170px;
     padding-bottom: 20px;
   }
-
   .rating {
     z-index: 1;
     position: absolute;
     top: 160px;
-    left: 22px;
+    left: 24px;
     @media screen and (max-width: 434px) {
       font-size: 15px;
       top: 115px;
@@ -25,8 +24,7 @@
       top: 98px;
     }
   }
-
-  & > img {
+  .img {
     height: 190px;
     width: 125px;
     position: absolute;
@@ -34,7 +32,8 @@
     border-radius: 10px;
     z-index: 1;
     top: -40px;
-    left: 25px;
+    left: 26px;
+    cursor: pointer;
     box-shadow: 10px 7px 10px rgba(63, 79, 87, 0.8);
     @media screen and (max-width: 434px) {
       height: 140px;
@@ -64,44 +63,22 @@
       color: rgb(61, 93, 63);
       margin-bottom: 11px;
       margin-top: 0;
+      cursor: pointer;
     }
 
     .authors {
       margin-bottom: 20px;
       @include text();
+      @include authors();
 
       & > p {
         margin: 0;
         font-style: italic;
       }
-
-      & > span {
-        cursor: pointer;
-        color: rgb(179, 77, 0);
-        font-style: italic;
-
-        &:hover {
-          color: rgb(239, 141, 66);
-        }
-      }
     }
 
     .categories {
-      gap: 1rem;
-      @include flex(flex-start, stretch, row, wrap);
-      @include text();
-      & > span {
-        user-select: none;
-        color: white;
-        border-radius: 4px;
-        padding: 0.3rem 0.7rem;
-        background-color: rgb(97, 86, 129, 0.7);
-        box-shadow: rgb(97, 86, 129, 0.4) 0 0 8px;
-      }
-
-      .category:hover {
-        background-color: rgba(159, 141, 211, 0.7);
-      }
+     @include categories()
     }
   }
 }
