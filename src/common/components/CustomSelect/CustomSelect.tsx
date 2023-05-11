@@ -21,7 +21,7 @@ export const CustomSelect: React.FC<CustomSelectPropsType> = React.memo(({items,
     },[variable])
     return (
         <Select
-            style={{flexGrow: 1}}
+            style={{flexGrow: 1,textOverflow: 'ellipsis',maxWidth:'67%',minWidth:'0%'}}
             onChange={onChangeHandler}
             value={value}
             defaultValue={items[0].value}
