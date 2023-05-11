@@ -5,6 +5,7 @@ import {BooksApi} from "common/api/books-api";
 import {handleServerNetworkError} from "common/utils/utils";
 import {RootState} from "app/store";
 import {MAX_RES_FIRST} from "common/constants/constants";
+import {changeIsShow} from "features/Header/FiltersPanel/filters-slice";
 
 const initialState: ResponseBooksData = {
     books: [],
@@ -13,37 +14,38 @@ const initialState: ResponseBooksData = {
 }
 
 const booksSlice = createSlice({
-    initialState: initialState,
+    initialState,
     name: 'books',
     reducers: {
         clearBooks: (state) => {
             state.books = []
         },
-        changeAddMore: (state,action:PayloadAction<{addMore:boolean}>)=>{
+        changeAddMore: (state, action: PayloadAction<{ addMore: boolean }>) => {
             state.addMore = action.payload.addMore
         },
-        changeTotalItems: (state,action)=>{
+        changeTotalItems: (state, action) => {
             state.totalItems = action.payload
         }
     },
     extraReducers: (builder) => {
         builder.addCase(loadBooks.fulfilled, (state, action) => {
-           state.books = [...state.books, ...action.payload]
+            state.books = [...state.books, ...action.payload]
         })
     }
 })
 export const booksReducer = booksSlice.reducer
-export const {clearBooks,changeAddMore,changeTotalItems} = booksSlice.actions
+export const {clearBooks, changeAddMore, changeTotalItems} = booksSlice.actions
 
 export const loadBooks = createAsyncThunk('books/loadBooks',
-    async (data: SearchRequestDataType, {dispatch, rejectWithValue,getState}) => {
+    async (data: SearchRequestDataType, {dispatch, rejectWithValue, getState}) => {
         const {books} = getState() as RootState
-        !books.addMore &&  dispatch(setAppStatus({status: 'loading'}))
+        !books.addMore && dispatch(setAppStatus({status: 'loading'}))
+        dispatch(changeIsShow({isShow: true}))
         try {
-            const {query, orderBy, startIndex, maxResults,category,inauthor} = data
-            const res = await BooksApi.loadBooks({query, maxResults, startIndex, orderBy, category,inauthor})
+            const {query, orderBy, startIndex, maxResults, category, inauthor} = data
+            const res = await BooksApi.loadBooks({query, maxResults, startIndex, orderBy, category, inauthor})
             dispatch(setAppStatus({status: 'succeeded'}))
-            if(maxResults===MAX_RES_FIRST){
+            if (maxResults === MAX_RES_FIRST) {
                 dispatch(changeTotalItems(res.data.totalItems))
             }
             return res.data.items
