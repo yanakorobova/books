@@ -43,7 +43,7 @@
       max-width: 580px;
       width: 100%;
       @include flex(space-between, center, column);
-      gap: 25px;
+      gap: 20px;
 
       .search {
         width: 100%;
