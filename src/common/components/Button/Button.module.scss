@@ -5,15 +5,15 @@
   text-align: center;
   text-overflow: ellipsis;
   width: 100%;
-  color: rgb(179, 77, 0);
+  color: white;
   font-size: inherit;
   font-weight: inherit;
-  border: 2px solid rgb(179, 77, 0);
+  border: 2px solid rgb(224, 97, 2);
   transition: all 0.3s ease;
   cursor: pointer;
-
+  background: rgb(224, 97, 2);
   &:hover {
-    background: rgb(179, 77, 0);
-    color: white;
+    background: rgb(246, 147, 74);
+    border: 2px solid rgb(246, 147, 74);
   }
 }

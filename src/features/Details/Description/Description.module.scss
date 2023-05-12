@@ -17,7 +17,7 @@
       height: 200px;
     }
     @media screen and (max-width: 400px) {
-      height: 170px;
+      height: 180px;
     }
 
     .bg {
@@ -61,7 +61,8 @@
       @media screen and (max-width: 680px) {
         width: 150px;
         height: 210px;
-        bottom: 0;
+        bottom: -40px;
+        top: auto;
         left: 50%;
         transform: translate(-50%, 0);
       }
@@ -75,6 +76,8 @@
   .description {
 
     .back {
+      font-size: 17px;
+      color: rgb(179, 77, 0);
       @include flex(flex-start, center);
       gap: 10px;
       cursor: pointer;
@@ -126,6 +129,7 @@
 
         .text {
           text-align: justify;
+          line-height: 22px;
 
           .line {
             margin-top: 10px;

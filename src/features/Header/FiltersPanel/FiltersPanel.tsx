@@ -3,7 +3,7 @@ import s from './../Header.module.scss'
 import {Search} from "common/components/Search/Search";
 import {CustomSelect} from "common/components/CustomSelect/CustomSelect";
 import {useAppDispatch, useAppSelector} from "app/store";
-import {selectCategory, selectIsShow, selectOrderBy, selectQuery} from "app/selectors";
+import {selectCategory, selectOrderBy, selectQuery} from "app/selectors";
 import {changeCategory, changeOrderBy, changeQuery} from "features/Header/FiltersPanel/filters-slice";
 import {OrderByType} from "common/type/type";
 import {useNavigate} from "react-router-dom";
@@ -42,7 +42,6 @@ export const FiltersPanel = () => {
     const orderBy = useAppSelector(selectOrderBy)
     const category = useAppSelector(selectCategory)
     const query = useAppSelector(selectQuery)
-    const isShow = useAppSelector(selectIsShow)
     const navigate = useNavigate()
 
     const changeOrderByHandler = useCallback((orderBy: OrderByType) =>
@@ -61,7 +60,7 @@ export const FiltersPanel = () => {
             <div className={s.search}>
                 <Search callback={changeQueryHandler} variable={query}/>
             </div>
-            {isShow && <div className={s.selectsBlock}>
+            <div className={s.selectsBlock}>
                 <div>
                     <p>Categories</p>
                     <CustomSelect items={categories} variable={category} callback={changeCategoryHandler}/>
@@ -70,7 +69,7 @@ export const FiltersPanel = () => {
                     <p>Sorting by</p>
                     <CustomSelect items={sort} variable={orderBy} callback={changeOrderByHandler}/>
                 </div>
-            </div>}
+            </div>
         </div>
     );
 };
