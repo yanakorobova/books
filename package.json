@@ -2,7 +2,7 @@
   "name": "books",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://yanakorobova.github.io/books",
+  "homepage": "https://yanakorobova.github.io/books",
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@reduxjs/toolkit": "^1.9.5",
@@ -15,6 +15,7 @@
     "@types/react-dom": "^18.0.0",
     "antd": "^5.4.7",
     "axios": "^1.4.0",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
