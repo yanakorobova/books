@@ -43,7 +43,7 @@
       max-width: 580px;
       width: 100%;
       @include flex(space-between, center, column);
-      gap: 20px;
+      gap: 15px;
 
       .search {
         width: 100%;
@@ -59,7 +59,7 @@
 
         & > div {
           width: 50%;
-          gap: 10px;
+          gap: 15px;
           @include flex(space-between, center);
           font-weight: 500;
           @media screen and (max-width: 530px) {
