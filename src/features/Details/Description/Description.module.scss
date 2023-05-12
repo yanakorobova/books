@@ -4,11 +4,21 @@
   width: 100%;
   height: auto;
   @include flex(flex-start, stretch);
+  @media screen and (max-width: 680px) {
+    @include flex(flex-start, stretch, column);
+  }
 
   .bgContainer {
     width: 40%;
     background-color: rgb(245, 245, 245);
     position: relative;
+    @media screen and (max-width: 680px) {
+      width: 100%;
+      height: 200px;
+    }
+    @media screen and (max-width: 400px) {
+      height: 170px;
+    }
 
     .bg {
       right: 0;
@@ -25,6 +35,10 @@
         transform: scale(1.5);
         transform-origin: right top;
       }
+
+      @media screen and (max-width: 680px) {
+        right: -5%;
+      }
     }
 
     & > img {
@@ -36,6 +50,25 @@
       right: -30px;
       top: 30px;
       border: 1px solid rgb(232, 232, 232);
+      @media screen and (max-width: 1050px) {
+        width: 210px;
+        height: 310px;
+      }
+      @media screen and (max-width: 800px) {
+        width: 190px;
+        height: 290px;
+      }
+      @media screen and (max-width: 680px) {
+        width: 150px;
+        height: 210px;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+      @media screen and (max-width: 400px) {
+        width: 120px;
+        height: 175px;
+      }
     }
   }
 
@@ -53,6 +86,9 @@
 
     padding: 30px 0 60px 60px;
     width: 100%;
+    @media screen and (max-width: 680px) {
+      padding: 50px 0 60px 0;
+    }
 
     .info {
       & h3 {

@@ -55,7 +55,7 @@ export const Description = React.memo(() => {
                         <p>{printedPageCount} printed pages</p>
                         <p>{publishedDate.slice(0, 4)}</p>
                     </div>
-                    <div className={s.aboutBook}>
+                    {description && <div className={s.aboutBook}>
                         <h3>About the book</h3>
                         <div className={s.text}>{description.slice(0, MAX_TEXT_SHOW).replace(/<\/?\w+>/g, '')}
                             {description.length > MAX_TEXT_SHOW && !show && <>
@@ -72,7 +72,7 @@ export const Description = React.memo(() => {
                                 }
                             </div>
                         }
-                    </div>
+                    </div>}
                     <div>
                         <h3>Publisher</h3>
                         <div>{publisher ? publisher : "Publisher company not available"}</div>

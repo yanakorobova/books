@@ -1,36 +1,43 @@
 @import 'src/common/scss/mixins/mixins';
 
-.error{
+.error {
   padding-top: 30px;
   width: 100%;
   text-align: center;
   font-weight: bold;
   font-size: 23px;
 }
-.books{
+
+.books {
   padding-bottom: 80px;
-  .countBooks{
+
+  .countBooks {
     padding-top: 1.5rem;
     font-size: 24px;
     font-weight: 700;
     text-align: center;
-    & > span{
+
+    & > span {
       color: rgb(179, 77, 0);
     }
+
     @media screen and (max-width: 347px) {
       font-size: 20px;
     }
   }
+
+  .notFound {
+    padding-top: 1.5rem;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 23px;
+  }
+
   .container {
     padding-top: 5rem;
     @media screen and (max-width: 347px) {
       padding-top: 3rem;
-    }
-    .notFound {
-      width: 100%;
-      text-align: center;
-      font-weight: bold;
-      font-size: 23px;
     }
 
     .listBooks {

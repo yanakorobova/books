@@ -10,9 +10,9 @@ export const Search: React.FC<SearchPropsType> = React.memo(({callback, variable
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-    const onClickHandler = () => {
-        if (value) {
-            callback(value)
+    const onClickHandler = (val: string) => {
+        if (val) {
+            callback(val)
         }
     }
     useEffect(() => {
@@ -23,10 +23,10 @@ export const Search: React.FC<SearchPropsType> = React.memo(({callback, variable
         <Input.Search
             size="large"
             placeholder="Books or author"
-            onChange={onChangeHandler}
             allowClear
-            onSearch={onClickHandler}
+            onChange={onChangeHandler}
             value={value}
+            onSearch={onClickHandler}
         />
     );
 })
