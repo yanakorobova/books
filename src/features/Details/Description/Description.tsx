@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import s from './Description.module.scss'
-import {useAppDispatch, useAppSelector} from "app/store";
+import {useAppSelector} from "app/store";
 import {selectBookInfo} from "app/selectors";
 import defaultImg from 'assets/images/default.jpg'
-import {changeCategory, changeInauthor} from "features/Header/FiltersPanel/filters-slice";
 import {ArrowLeftOutlined, DownOutlined, StarFilled, UpOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 import {MAX_TEXT_SHOW} from "common/constants/constants";
 import {Button} from "common/components/Button/Button";
 
 export const Description = React.memo(() => {
-    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const [show, setShow] = useState(false)
     let {
@@ -19,18 +17,16 @@ export const Description = React.memo(() => {
     } = useAppSelector(selectBookInfo)
 
     const searchBookByAuthorHandler = (author: string) => {
-        dispatch(changeInauthor({inauthor: author}))
-        backHandler()
+        navigate(`/?query=&orderBy=Relevance&category=All&inauthor=${author}`)
     }
     const searchBookByCategoryHandler = (category: string) => {
-        dispatch(changeCategory({category}))
-        backHandler()
+        navigate(`/?query=&orderBy=Relevance&category=${category}&inauthor=`)
     }
     const showMoreHandler = () => {
         setShow(!show)
     }
     const backHandler = () => navigate(-1)
-
+    const newDescription = description && description.replace(/<\/?\w+>/g, '')
     return (
         <div className={s.container}>
             <div className={s.bgContainer}>
@@ -53,16 +49,18 @@ export const Description = React.memo(() => {
                     </p> : "Author(s) name not available"}
                     <div className={s.yearPage}>
                         <p>{printedPageCount} printed pages</p>
-                        <p>{publishedDate.slice(0, 4)}</p>
+                        <p>{publishedDate && publishedDate.slice(0, 4)}</p>
                     </div>
-                    {description && <div className={s.aboutBook}>
+                    {newDescription && <div className={s.aboutBook}>
                         <h3>About the book</h3>
-                        <div className={s.text}>{description.slice(0, MAX_TEXT_SHOW).replace(/<\/?\w+>/g, '')}
-                            {description.length > MAX_TEXT_SHOW && !show && <>
+                        <div className={s.text}>{description.length > MAX_TEXT_SHOW ?
+                            newDescription.slice(0, MAX_TEXT_SHOW)
+                            : newDescription}
+                            {newDescription.length > MAX_TEXT_SHOW && !show && <>
                                 <span>...</span>
                                 <div className={s.line}></div>
                             </>}
-                            {show && <span>{description.slice(MAX_TEXT_SHOW).replace(/<\/?\w+>/g, '')}</span>}
+                            {show && <span>{newDescription.slice(MAX_TEXT_SHOW)}</span>}
                         </div>
                         {description.length > MAX_TEXT_SHOW &&
                             <div className={s.button} onClick={showMoreHandler}>

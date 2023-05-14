@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from "app/store";
 import {changeAddMore, clearBooks, loadBooks} from "features/ListBooks/books-slice";
 import {
@@ -17,9 +17,14 @@ import s from './ListBooks.module.scss';
 import {Loader} from "common/components/Loader/Loader";
 import {MAX_RES_ADD_MORE, MAX_RES_FIRST} from "common/constants/constants";
 import {Button} from "common/components/Button/Button";
+import {useSearchParams} from "react-router-dom";
+import {setFilters} from "features/Header/FiltersPanel/filters-slice";
 
 export const ListBooks = () => {
 
+    const [searchParams, setSearchParams] = useSearchParams()
+    const isSearch = useRef(false)
+    const isMounted = useRef(false)
     const dispatch = useAppDispatch()
     const books = useAppSelector(selectBooks)
     const query = useAppSelector(selectQuery)
@@ -32,7 +37,28 @@ export const ListBooks = () => {
     const addMore = useAppSelector(selectAddMore)
 
     useEffect(() => {
-        dispatch(loadBooks({maxResults: MAX_RES_FIRST, startIndex: 0, orderBy, query, category, inauthor}))
+        if (window.location.hash) {
+            const params = Object.fromEntries(searchParams)
+            if (
+                params.query !== query ||
+                params.orderBy !== orderBy ||
+                params.category !== category ||
+                params.inauthor !== inauthor
+            ) {
+                dispatch(setFilters({params}))
+                isSearch.current = true
+            }
+        }
+    }, [])
+
+
+    useEffect(() => {
+        if (!isSearch.current) {
+            dispatch(loadBooks({maxResults: MAX_RES_FIRST, startIndex: 0, orderBy, query, category, inauthor}))
+        }
+        isMounted.current && setSearchParams({query, orderBy, category, inauthor})
+        isSearch.current = false
+        isMounted.current = true
         return () => {
             dispatch(clearBooks())
         }

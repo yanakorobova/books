@@ -32,7 +32,17 @@ const filtersSlice = createSlice({
         changeIsShow: (state, action: PayloadAction<{ isShow: boolean }>) => {
             state.isShow = action.payload.isShow
         },
+        setFilters: (state, action) => {
+            return {...action.payload.params, isShow: true}
+        }
     },
 })
 export const filtersReducer = filtersSlice.reducer
-export const {changeQuery, changeOrderBy, changeCategory, changeInauthor, changeIsShow} = filtersSlice.actions
+export const {
+    changeQuery,
+    changeOrderBy,
+    changeCategory,
+    changeInauthor,
+    changeIsShow,
+    setFilters,
+} = filtersSlice.actions
