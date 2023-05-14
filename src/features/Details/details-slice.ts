@@ -14,7 +14,11 @@ const initialState: BookInfoType = {
 const detailsSlice = createSlice({
     name: 'details',
     initialState,
-    reducers: {},
+    reducers: {
+        deleteBook: ()=> {
+            return initialState
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(loadBook.fulfilled, (state, action) => {
             return action.payload
@@ -23,6 +27,7 @@ const detailsSlice = createSlice({
 })
 
 export const detailsReducer = detailsSlice.reducer
+export const {deleteBook} = detailsSlice.actions
 
 export const loadBook = createAsyncThunk('/details/loadBook',
     async (data: DataBookType, {dispatch, rejectWithValue}) => {

@@ -6,6 +6,7 @@ import {Header} from "features/Header/Header";
 import {HomePage} from "pages/HomePage";
 
 function App() {
+
     return (
         <>
             <Header/>

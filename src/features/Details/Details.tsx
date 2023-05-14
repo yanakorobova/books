@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "app/store";
 import {useParams} from "react-router-dom";
-import {loadBook} from "features/Details/details-slice";
+import {deleteBook, loadBook} from "features/Details/details-slice";
 import {selectBookIsLoad, selectError, selectStatus} from "app/selectors";
 import {Loader} from "common/components/Loader/Loader";
 import s from "features/ListBooks/ListBooks.module.scss";
@@ -14,8 +14,12 @@ export const Details = () => {
     const status = useAppSelector(selectStatus)
     const error = useAppSelector(selectError)
     const isLoad = useAppSelector(selectBookIsLoad)
+
     useEffect(() => {
         dispatch(loadBook({volumeId: id}))
+        return () => {
+            dispatch(deleteBook())
+        }
     }, [])
 
     return (

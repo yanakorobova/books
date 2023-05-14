@@ -17,8 +17,8 @@ const booksSlice = createSlice({
     initialState,
     name: 'books',
     reducers: {
-        clearBooks: (state) => {
-            state.books = []
+        clearBooks: () => {
+            return initialState
         },
         changeAddMore: (state, action: PayloadAction<{ addMore: boolean }>) => {
             state.addMore = action.payload.addMore
