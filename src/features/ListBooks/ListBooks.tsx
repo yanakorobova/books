@@ -37,7 +37,7 @@ export const ListBooks = () => {
     const addMore = useAppSelector(selectAddMore)
 
     useEffect(() => {
-        if (window.location.hash) {
+        if (window.location.hash && window.location.hash !== '#/') {
             const params = Object.fromEntries(searchParams)
             if (
                 params.query !== query ||
