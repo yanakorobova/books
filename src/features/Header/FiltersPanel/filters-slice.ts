@@ -33,7 +33,10 @@ const filtersSlice = createSlice({
             state.isShow = action.payload.isShow
         },
         setFilters: (state, action) => {
-            return {...action.payload.params, isShow: true}
+            state.category = action.payload.params.category
+            state.inauthor = action.payload.params.inauthor
+            state.query = action.payload.params.query
+            state.orderBy = action.payload.params.orderBy
         }
     },
 })

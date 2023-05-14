@@ -15,7 +15,7 @@ export const BooksApi = {
         if (inauthor) {
             return instance.get(`?q=inauthor:"${inauthor}"&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
         }
-        return instance.get(`?q=subject:"${category}"&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
+        return instance.get(`?q=subject:${category}&maxResults=${maxResults}&startIndex=${startIndex}&orderBy=${orderBy}`)
     },
     getBook(data: DataBookType) {
         return instance.get(`/${data.volumeId}`)
